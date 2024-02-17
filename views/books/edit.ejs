@@ -1,0 +1,55 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<body>
+    <div class="row mt-3"> <!--mt-3 means margin top of 3-->
+        <div class="col-8 offset-2">
+            <h2>Edit Your Book</h2><br>
+            <form method="POST" action="/LMS/Books/<%= book._id %>?_method=PUT" class="needs-validation" enctype="multipart/form-data" novalidate>
+                <div class="mb-3">
+                    <label for="bid" class="form-label">Book Id</label>
+                    <input type="number" name="book[bid]" value="<%= book.bid %>" class="form-control" required>
+                    <div class="invalid-feedback">Book id should be valid</div>
+                </div>
+                <div class="mb-3">                 <!--The novalidate will remove all the default implementations of the browser so that we can apply custom implementations-->
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" name="book[title]" value="<%= book.title %>" class="form-control" required>
+                    <div class="valid-feedback">Title Looks Good!!!</div>
+                    <div class="invalid-feedback">Please enter a valid title</div>
+                </div>
+                <div class="mb-3">
+                    <label for="author" class="form-label">Author Name</label>
+                    <input type="text" name="book[author]" value="<%=book.author%>" class="form-control" required>
+                    <div class="valid-feedback">Author Looks Good!!!</div>
+                    <div class="invalid-feedback">Write author's name</div>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea name="book[description]" id="" cols="30" rows="10" class="form-control" required><%= book.description %></textarea>
+                    <div class="invalid-feedback">Write something about your listing</div>
+                </div> 
+                <div class="mb-3">
+                    <label for="image" class="form-label">Upload New Image</label>
+                    <input type="file" name="book[image]" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="noc" class="form-label">Number of copies</label>
+                    <input type="number" name="book[noc]" value="<%=book.noc%>" class="form-control" required><br>
+                </div>
+                <div class="row">
+                    <!-- Here we have taken price and country in the same row and then we have assigned only 4columns to price and 6columns to country  and md means that when size is md or greater than that then only these properties will follow-->
+                    <div class="mb-3 col-md-6">  
+                        <label for="yop" class="form-label">Year of Publication</label>
+                        <input type="number" name="book[yop]" value=<%=book.yop%> class="form-control" required>
+                        <div class="invalid-feedback">Please Enter a valid year</div>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="category" class="form-label">Category</label>
+                        <input type="text" name="book[category]" value="<%=book.category%>" class="form-control" required>
+                        <div class="invalid-feedback">Enter a valid book type</div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-dark add-btn">Edit Book</button><br><br><br>   <!--Here btn is a default class from bootstrap-->
+            </form>
+        </div>
+    </div>
+</body>

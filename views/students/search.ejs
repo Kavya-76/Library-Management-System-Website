@@ -1,0 +1,22 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<body>
+    <div class="row mt-3">
+        <h1 class="col-6 offset-3">Search a specific student</h1>
+        <div class="col-6 offset-3">
+            <form action="/LMS/Students/search" method="POST" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Student ID</label>
+                    <input type="number" name="user[username]" placeholder="Enter student id" class="form-control" required>
+                    <div class="invalid-feedback">student id should be valid</div>
+                    <div class="valid-feedback">Looks good!</div>
+                </div>
+                <button class="btn btn-dark add-btn">Search</button>
+                <!-- <button class="btn btn-success">Sign Up</button> -->
+            </form>
+        </div>
+    </div>
+</body>
+
+
+
+

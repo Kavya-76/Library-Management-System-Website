@@ -1,0 +1,14 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<body>
+    <h1>All Students</h1>
+    
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">  <!--Here row is a predefined class  rows-cols-lg-3 means at large screen size minimum of 3 cards will be displayed-->
+        <ul>
+            <% for (let user of allUsers) { %>
+                <a href="/LMS/Students/<%= user._id %>" class="student-link">
+                    <li><b><%= user.name %></b></li>
+                </a>
+            <% } %>
+        </ul>
+    </div>
+</body>

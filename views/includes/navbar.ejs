@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="/css/style.css">
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">   <!-- Here light means that background color of the navbar will be white  and border-bottom is a bootstrap class which adds the bottom border, sticky top means that our navbar will stick to the top when we scroll our page-->
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/LMS/Books"><i class="fa-solid fa-book"></i></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <% if(currUser && (currUser._id).equals(adminID)) { %>
+            <a class="nav-link" href="/LMS">Home</a>
+            <a class="nav-link" href="/LMS/Books/new">Add new book</a>
+          <% } %>
+        </div>
+
+        <div class="navbar-nav ms-auto">
+          <form class="d-flex" role="search" method="POST" action="/LMS/Books/searchName">
+            <label for="title" class="form-label"></label>
+            <input class="form-control me-2 search-inp" name="book[title]" type="text" placeholder="Enter book name">
+            <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+          </form>
+        </div>
+ 
+        <div class="navbar-nav ms-auto">
+          <% if(!currUser){%>
+            <a class="nav-link" href="/signup"><b>Sign Up</b></a>
+            <a class="nav-link" href="/login"><b>Login</b></a>
+          <% } %>
+          <% if(currUser) { %>
+            <a class="nav-link" href="/LMS/Students/<%= currUser._id %>">My profile</a>
+            <a class="nav-link" href="/logout">Logout</a>
+          <% } %>
+        </div>
+      </div>  
+    </div>
+</nav>

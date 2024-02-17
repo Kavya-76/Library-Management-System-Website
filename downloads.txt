@@ -1,0 +1,22 @@
+npm init -i
+npm i express
+npm i ejs
+npm i mongoose
+
+
+npm i method-override          # to send put and delete request from form
+npm i ejs-mate                 # to create templates
+npm i joi                      # for server side schema validation (that the info coming is correct according to schema)
+npm i express-session
+npm i connect-flash
+npm i passport                # authentication middleware
+npm i passport-local
+npm i passport-local-mongoose
+
+npm i multer                        # to enable use of multipart form data
+npm i dotenv                        # connects the dotenv to backend
+npm i cloudinary                     # to use cloudinary as a cloud storage
+npm i multer-storage-cloudinary
+
+npm i connect-mongo                        # to store the session related information
+

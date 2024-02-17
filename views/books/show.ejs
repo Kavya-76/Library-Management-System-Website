@@ -1,0 +1,97 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<body>
+    <div class="row mt-3">
+        <div class="col-8 offset-3">
+            <h1><b><u><%= book.title %></u></b></h1>
+        </div>
+        <div class="desc">
+            <div class="card col-4 offset-3 show-card book-card mt-2">
+                <img src="<%= book.image.url %>" class="card-img-top show-img" alt="book_image">
+                <!-- <div class="card-body">
+                    <p class="card-text">
+                        Author: <%= book.author %><br>
+                        Year of Publication: <%= book.yop %><br>
+                        Category: <%= book.category %><br>
+                        <% if(currUser && (currUser._id).equals(book.owner._id)){ %>
+                            <b>Book ID: <%= book.bid %></b><br>
+                            <b>Number of Books: <%= book.noc %></b><br>
+                        <% } %>
+                    </p>
+                </div> -->
+            </div>
+            <div class="card col-4 show-card desc-card mt-3">
+                <h4>About the book</h4>
+                <%= book.description %>
+                <div class="card-body">
+                    <p class="card-text mt-5">
+                        Author: <%= book.author %><br>
+                        Year of Publication: <%= book.yop %><br>
+                        Category: <%= book.category %><br>
+                        <% if(currUser && (currUser._id).equals(book.owner._id)){ %>
+                            <b>Book ID: <%= book.bid %></b><br>
+                            <b>Number of Books: <%= book.noc %></b><br>
+                        <% } %>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% if(currUser && (currUser._id).equals(adminID)) {%>   <!-- it will check that if the user logged in is same as the owner of the book then only he will be able to edit the book> -->
+        <div class="btns mt-3">
+            <a href="/LMS/Books/<%= book._id %>/edit" class="btn btn-dark col-1 offset-3 edit-btn">Edit</a>
+            <form method="POST" action="/LMS/Books/<%= book._id %>?_method=DELETE">
+                <button class="btn btn-dark offset-5 del-btn">Delete</button>
+            </form>
+        </div>
+    <% } %>
+    <br><hr>
+    <div class="col-8 offset-3">
+        <% if(currUser) {%>
+            <h4>Leave a Review</h4>
+            <form action="/LMS/Books/<%= book._id%>/reviews" method="POST" novalidate class="needs-validation">                
+                <div class="mb-3 mt-3">
+                    <label for="rating" class="form-label">Rating</label>
+                    <fieldset class="starability-slot">   <!-- here we have implemented star review system from a github built-in star package -->
+                        <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+                        <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                        <label for="first-rate1" title="Terrible">1 star</label>
+                        <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                        <label for="first-rate2" title="Not good">2 stars</label>
+                        <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                        <label for="first-rate3" title="Average">3 stars</label>
+                        <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                        <label for="first-rate4" title="Very good">4 stars</label>
+                        <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                        <label for="first-rate5" title="Amazing">5 stars</label>
+                    </fieldset>
+                </div>
+                        
+                <div class="mb-3 mt-3">
+                    <label for="comment" class="form-label">Comments</label>
+                    <textarea name="review[comment]" id="comment" cols="30" rows="10" class="form-control" required></textarea>
+                    <div class="invalid-feedback">Please add some comments for review</div>
+                </div>
+                <button class="btn btn-outline-dark">Submit</button>
+            </form>
+        <% } %>
+
+        <% if(book.reviews.length > 0) { %>
+            <hr>
+            <div class="row">
+                <p><b>All Reviews</b></p>
+                <% for (review of book.reviews) {%>
+                    <div class="card col-5 ms-3 mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">@ <%= review.author.name %></h5>
+                            <p class="starability-result card-text" data-rating= <%= review.rating%>>Rated: 3 stars</p>
+                            <p class="card-text"><%=  review.comment %></p>                    
+                        </div>
+                        <form method="POST" class="mb-3" action="/LMS/Books/<%= book._id%>/reviews/<%= review._id%>?_method=DELETE">
+                            <button class="btn btn-dark btn-sm mt-3">Delete</button>
+                        </form>
+                    </div>
+                <% } %>
+            </div>
+        <% } %>
+    </div>
+</body>

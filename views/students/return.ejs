@@ -1,0 +1,12 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<body>
+    <h1>Enter the id of book to issue</h1><br>
+    <form method="POST" action="/LMS/Students/<%= user._id%>/return" class="needs-validation" novalidate>  <!--Here class="needs-validation and novalidate are bootstrap classes that means the information added must be necessary that checks the validation of the form-->
+        <div class="mb-3">
+            <label for="bid" class="form-label">Book Number</label>
+            <input type="number" name="book[bid]" placeholder="Enter book id" class="form-control" required>
+            <div class="invalid-feedback">Book id should be valid</div>
+        </div>
+        <button class="btn btn-dark add-btn">Search</button><br><br><br>   <!--Here btn is a default class from bootstrap-->
+    </form>
+</body>

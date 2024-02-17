@@ -1,0 +1,66 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<body>
+    <!-- Here the classes used like form-label, form-control, mb-3 are all bootstrap classes-->
+    <div class="row">
+        <!-- Whenever we make a row then it has 12 columns -->
+        <!-- Here we have given col-8 which means that our form will occupy only 8 columns and so it will have less width -->
+        <div class="col-8 offset-2"><br> <!-- offset means the space from left --> 
+            <h2>Add a new Book</h2>
+            <form method="POST" action="/LMS/Books" class="needs-validation" enctype="multipart/form-data" novalidate>  <!--Here class="needs-validation and novalidate are bootstrap classes that means the information added must be necessary that checks the validation of the form-->
+                <!-- to use class needs-validation we have written the js logic in pubic>script.js -->
+                <!-- also we have used enctype to make our form to store other data types like images -->
+                <div class="mb-3">
+                    <label for="bid" class="form-label">Book Id</label>
+                    <input type="number" name="book[bid]" placeholder="Enter book id" class="form-control" required>
+                    <div class="invalid-feedback">Book id should be valid</div>
+                </div>
+                <div class="mb-3">                 <!--The novalidate will remove all the default implementations of the browser so that we can apply custom implementations-->
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" name="book[title]" placeholder="Enter Title" class="form-control" required>
+                    <div class="valid-feedback">Title Looks Good!!!</div>
+                    <div class="invalid-feedback">Please enter a valid title</div>
+                </div>
+                <div class="mb-3">
+                    <label for="author" class="form-label">Author Name</label>
+                    <input type="text" name="book[author]" placeholder="Enter Author's name" class="form-control" required>
+                    <div class="valid-feedback">Author Looks Good!!!</div>
+                    <div class="invalid-feedback">Write author's name</div>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea name="book[description]" id="" cols="30" rows="10" placeholder="Enter description" class="form-control" required></textarea>
+                    <div class="invalid-feedback">Write something about book</div>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image</label>
+                    <input type="file" name="book[image]" class="form-control" required><br>
+                </div>
+
+                <div class="row">
+                    <!-- Here we have taken price and country in the same row and then we have assigned only 4columns to price and 6columns to country  and md means that when size is md or greater than that then only these properties will follow-->
+                    <div class="mb-3 col-md-6">  
+                        <label for="yop" class="form-label">Year of Publication</label>
+                        <input type="number" name="book[yop]" placeholder="Enter year of publication" class="form-control" required>
+                        <div class="invalid-feedback">Please Enter a valid year</div>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="noc" class="form-label">Number</label>
+                        <input type="number" name="book[noc]" placeholder="Enter number of copies" class="form-control" required>
+                        <div class="invalid-feedback">Enter a valid number of books</div>
+                    </div>
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label for="category" class="form-label">Category</label>
+                    <input type="text" name="book[category]" placeholder="Enter type of book" class="form-control" required>
+                    <div class="invalid-feedback">Enter a valid book type</div>
+                </div>
+                
+                <button class="btn btn-dark add-btn">Add Book</button><br><br><br>   <!--Here btn is a default class from bootstrap-->
+                <!-- as we have linked this file with boilerplatee.ejs so all the bootstrap properties will be applied to it as well-->
+            </form>
+        </div>
+    </div>
+</body>
+<!-- Here we have given names as listing[]  so that we can can access all the values using a single  array  listing[] -->
+
+<!-- we are using the bootstrap classes valid feedback and invalid feedback to display a message when we are entering valid/invlalid information -->
